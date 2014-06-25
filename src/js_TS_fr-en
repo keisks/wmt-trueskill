@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#$ -cwd
+#$ -o output.dat
+#$ -e error.dat
+
+for i in `seq 0 99`
+do 
+  cat ../data/sample-fr-en-train.csv |python infer_TS.py -o all-fr-en$i -n 2 -d 6400 -p
+done
+
