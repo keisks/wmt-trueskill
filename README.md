@@ -28,7 +28,7 @@ This document describes the proposed method described in the following paper:
 ## Prerequisites python modules:
  - trueskill (http://trueskill.org/), for running TrueSkill model
  - matplotlib (http://matplotlib.org/), for visualizing result
- - sympy (http://sympy.org/), for evaluation
+ - sympy (http://sympy.org/), for tuning
 
 
 ## Example Procedure:
@@ -45,8 +45,8 @@ This document describes the proposed method described in the following paper:
     * usage: `python cluster.py --help`
     * e.g. `python eval/cluster.py -n 100 -by-rank -i 95 fr-en result/fr-en`
 
-+ 3) To evaluate (accuracy), run `eval_acc.py`.
-    * e.g. `cat data/sample-fr-en-test.csv |python src/eval_acc.py -d 0.1 -i result/fr-en0_mu_sigma.json`
++ 3) To tune decision radius in (accuracy), run `tune_acc.py`.
+    * e.g. `cat data/sample-fr-en-{dev|test}.csv |python src/eval_acc.py -d 0.1 -i result/fr-en0_mu_sigma.json`
 
 + 4) To see the next systems to be compared, run `python src/scripts/next_comparisons.py *_mu_sigma.json N`
     * This outputs the next comparison under the current result mu and sigma (.json) for N free-for-all matches.
