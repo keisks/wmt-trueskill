@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 #encoding: utf-8
 
-__author__ = "Keisuke Sakaguchi"
-__version__ = "0.1"
 __usage__ = "cat JUDGEMENTS.csv |python infer_EW.py OUTPUTID(e.g. cs-en-ExpWin)"
 
 import sys

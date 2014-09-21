@@ -6,7 +6,7 @@ Source code used in 2014 WMT paper, "Efficient Elicitation of Annotations for Hu
 - Matt Post
 - Benjamin Van Durme
 
-Last updated: June 24th, 2014
+Last updated: Sep 20th, 2014
 
 - - -
 
@@ -37,8 +37,9 @@ This document describes the proposed method described in the following paper:
     * e.g. `cat data/sample-fr-en-train.csv |python src/infer_TS.py result/fr-en$i -n 2 -d 6400 -p 0.9`
     * You can change other parameters in inter_TS.py
     * JUDGEMENTS.csv must contain single language pair. (Preprocessing might be necessary.)
-        * For clustering (i.e. grouped ranking), we can execute 100+ runs for each language pair (e.g. fr-en from fr-en0 to fr-en99).
-        * If you are using SunGrid, please use src/js_TS_fr-en as a reference.
+        * For clustering (i.e. grouped ranking), we need to execute multiple runs (100+ is recommended) for each language pair (e.g. fr-en from fr-en0 to fr-en99).
+        * `sh src/js_TS_fr-en` would be helpful to run 100 times.
+        * This shell script can be also used with SunGrid.
     * You will get the result named OUT_ID_mu_sigma.json and OUT_ID_0.8-1.0_count.json  (a default setting)
 
 + 2) To see the ranking, run `cluster.py` in the eval directory.
@@ -51,3 +52,6 @@ This document describes the proposed method described in the following paper:
 + 4) To see the next systems to be compared, run `python src/scripts/next_comparisons.py *_mu_sigma.json N`
     * This outputs the next comparison under the current result mu and sigma (.json) for N free-for-all matches.
 
+
+## Questions and comments:
+ - Please e-mail to Keisuke Sakaguchi (keisuke[at]cs.jhu.edu).

@@ -3,7 +3,6 @@
 
 __author__ = "Keisuke Sakaguchi"
 __version__ = "0.1"
-__usage__ = "e.g. cat JUDGEMENTS.csv |python infer_TrueSkill.py -o fr-en0 -n 2 -d 12800 -p"
 
 #Input: JUDGEMENTS.csv which must contain one language-pair judgements.
 #Output: *_mu_sigma.json: Mu and Sigma for each system 
@@ -48,8 +47,8 @@ num_record = [ args.dp ]
 # When -n is set to 2, you can set beginning and ending between (0 and 1) for counting the number of comparisons among systems.
 # This is used for generating a heatmap.
 # e.g. "count_begin=0.4 and count_end=0.6" records the number of comparisons from 40% to 60% of total comparisons.
-count_begin = 0.0
-count_end = 0.2
+count_begin = 0.8
+count_end = 1.0
 if count_begin > count_end:
     raise
 #######################################
