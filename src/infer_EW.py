@@ -19,6 +19,8 @@ arg_parser = argparse.ArgumentParser()
 arg_parser.add_argument('prefix', help='file prefix (e.g., fr-en0)')
 arg_parser.add_argument('-p', dest='dp_pct', type=float, default=1.0,
         help='Percentage of judgements to use (1.0)')
+arg_parser.add_argument('-s', dest='num_systems', type=int, default=5,
+        help='Number of systems in one ranking in CSV file (default=5)')
 arg_parser.add_argument('-n', dest='replacement', action='store_false', default=True,
         help='Just use all datapoints instead of bootstrap resampling')
 args = arg_parser.parse_args()
@@ -30,7 +32,7 @@ def expected_win():
     data_points = 0
     all_systems = {}
     if args.replacement:
-        dataset = [pw for pw in wmt.parse_csv(sys.stdin)]
+        dataset = [pw for pw in wmt.pairs(sys.stdin, numsys=args.num_systems)]
 
         print >> sys.stderr, "Bootstrap resampling %d of %d samples" % (args.dp_pct * len(dataset), len(dataset))
         for i in range(int(args.dp_pct * len(dataset))):

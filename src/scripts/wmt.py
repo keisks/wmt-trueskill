@@ -27,13 +27,13 @@ def get_pairwise(names, ranks):
         pair_result.append((pn[0], pn[1], pw))
     return pair_result
 
-def pairs(fh):
+def pairs(fh, numsys=5):
     """Reads in a CSV file fh, returning pairwise judgments."""
-    for systems, ranks in rankings(fh):
+    for systems, ranks in rankings(fh, numsys):
         for pair in get_pairwise(systems, ranks):
             yield pair
 
-def rankings(fh):
+def rankings(fh, numsym=5):
     """Reads in a CSV file fh, returning each 5-way ranking."""
 
     ### Parsing csv file and return system names and rank(1-5) for each sentence
@@ -42,7 +42,7 @@ def rankings(fh):
         sentID = int(row.get('segmentId'))
         systems = []
         ranks = []
-        for num in range(1, 6):
+        for num in range(1, 1+numsym):
             systems.append(row.get('system%dId' % num))
             ranks.append(int(row.get('system%drank' % num)))
 
