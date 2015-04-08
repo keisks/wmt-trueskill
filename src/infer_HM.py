@@ -3,7 +3,7 @@
 
 __author__ = "Keisuke Sakaguchi"
 __version__ = "0.1"
-__usage__ = "cat e.g. cat JUDGEMENTS.csv |python infer_HM.py -o fr-en0 > fr-en0.iter"
+__usage__ = "cat e.g. cat JUDGEMENTS.csv |python infer_HM.py fr-en0 -s 5 > fr-en0.iter"
 
 #Input: JUDGEMENTS.csv which must contain one language-pair judgements.
 #Output: *_mu_sigma.json: Mu and Sigma for each system 
@@ -22,6 +22,8 @@ from csv import DictReader
 
 arg_parser = argparse.ArgumentParser()
 arg_parser.add_argument('prefix', help='output ID (e.g. fr-en0)')
+arg_parser.add_argument('-s', dest='num_systems', type=int, default=5,
+        help='Number of systems in one ranking in CSV file (default=5)')
 args = arg_parser.parse_args()
 
 ### Global Variables and Parameters ###
@@ -31,7 +33,7 @@ DecR = 0.5      # Decision Radius
 sigma_0 = 1.0   # Sigma for initializing system's mu
 sigma_a = 0.5   # system's sigma (constant)
 sigma_obs = 1.0 # Sigma for observation noise
-result_dir = './result/'
+result_dir = '../results/'
 #######################################
 
 def parse_csv():
@@ -42,7 +44,7 @@ def parse_csv():
         sentID = int(row.get('segmentId'))
         systems = []
         ranks = []
-        for num in range(1, 6):
+        for num in range(1, args.num_systems+1):
             if row.get('system%dId' % num) in all_systems:
                 pass
             else:

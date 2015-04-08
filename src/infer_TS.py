@@ -30,6 +30,8 @@ arg_parser.add_argument('-d', action='store', dest='dp', type=int,
         help='Number of judgments to use (0 == all)', required=True)
 arg_parser.add_argument('-p', action='store', dest='dp_pct', type=float, default=1.0,
         help='Percentage of judgments to use (0.9)')
+arg_parser.add_argument('-s', dest='num_systems', type=int, default=5,
+        help='Number of systems in one ranking in CSV file (default=5)')
 args = arg_parser.parse_args()
 
 #######################################
@@ -65,7 +67,7 @@ def parse_csv():
         sentID = int(row.get('segmentId'))
         systems = []
         ranks = []
-        for num in range(1, 6):
+        for num in range(1, args.num_systems+1):
             if row.get('system%dId' % num) in all_systems:
                 pass
             else:
