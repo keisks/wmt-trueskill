@@ -45,13 +45,13 @@ This document describes the proposed method described in the following paper:
     * You can change other parameters in inter_TS.py, if needed.
     * For clustering (i.e. grouped ranking), we need to execute multiple runs of infer_TS.py (100+ is recommended) for each language pair (e.g. fr-en from fr-en0 to fr-en99).
     * You will get the result named OUT_ID_mu_sigma.json in the result directory
+    * For using Expected Win, run `python infer_EW.py -s 2 ../result/ABC`
 
 + 2) To see the grouped ranking, run `cluster.py` in the eval directory.
     * `cd ../eval`
     * `python cluster.py fr-en ../result/fr-en -n 100 -by-rank -pdf`
     * for more details: `python cluster.py --help`
     * pdf option might cause RuntimeError, but please check if a pdf file is successfully generated.
-
 
 + 3) (optional) To tune decision radius in (accuracy), run `tune_acc.py`.
     * e.g. `cat data/sample-fr-en-{dev|test}.csv |python src/eval_acc.py -d 0.1 -i result/fr-en0_mu_sigma.json`
