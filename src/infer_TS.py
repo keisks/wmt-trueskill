@@ -6,7 +6,7 @@ __version__ = "0.1"
 
 #Input: JUDGEMENTS.csv which must contain one language-pair judgements.
 #Output: *_mu_sigma.json: Mu and Sigma for each system 
-#        *.count: number of judgements among systems (for generating a heatmap) only if -n option is set to 2.
+#        *.count: number of judgements among systems (for generating a heatmap) if -n is set to 2 and -e.
 
 import sys
 import os
@@ -32,6 +32,9 @@ arg_parser.add_argument('-p', action='store', dest='dp_pct', type=float, default
         help='Percentage of judgments to use (0.9)')
 arg_parser.add_argument('-s', dest='num_systems', type=int, default=5,
         help='Number of systems in one ranking in CSV file (default=5)')
+arg_parser.add_argument('-e', dest='heat', default=False, action="store_true",
+        help='Produce a file for generating a heatmap (default=False)')
+
 args = arg_parser.parse_args()
 
 #######################################
@@ -189,7 +192,7 @@ def estimate_by_number():
                 json.dump(t, f)
                 f.close()
 
-                if (args.freeN == 2) and (num_iter_org == num_record[-1]):
+                if (args.freeN == 2) and (num_iter_org == num_record[-1]) and args.heat:
                     f = open(args.prefix + '-' + str(count_begin)+'-'+str(count_end)+'_count.json', 'w')
                     sys_names = zip(*sort_by_mu(system_rating))[1]
                     counts = get_counts(sys_names, counter_dict, num_play)

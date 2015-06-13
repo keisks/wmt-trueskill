@@ -38,6 +38,7 @@ arg_parser.add_argument('-n', type=int, default=0, help='number of runs')
 arg_parser.add_argument('-i', dest='conf_int', type=float, help='confident interval', default=0.95)
 arg_parser.add_argument('-by-rank', dest='by_rank', default=False, action='store_true', help='Cluster by rank instead of mu')
 arg_parser.add_argument('-pdf', dest='pdf', default=False, action='store_true', help='generate PDF')
+arg_parser.add_argument('-s', dest='short', default=False, action='store_true', help='shorten name')
 args = arg_parser.parse_args()
 
 def shorten_name(s_name):
@@ -176,7 +177,11 @@ if __name__ == '__main__':
     for i, s in enumerate(sys_mu_sigma):
 
         full_name = s[2]
-        name = shorten_name(full_name)
+        name = ""
+        if args.short:
+            name = shorten_name(full_name)
+        else:
+            name = full_name
 
         num_points = len(sys_rank[full_name])
         alpha = int(math.ceil((num_points - (num_points * 1.0 * args.conf_int)) / 2.0))

@@ -6,6 +6,6 @@
 
 for i in `seq 0 99`
 do 
-  cat ../data/sample-fr-en-train.csv |python infer_TS.py -o all-fr-en$i -n 2 -d 6400 -p
+  cat ../data/exported-tasks-ksakaguchi-2015-05-20.csv |python infer_TS.py ../result/fr-en$i -n 2 -d 0 -s 2 -p 0.5
 done
 
