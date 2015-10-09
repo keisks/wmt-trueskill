@@ -111,7 +111,7 @@ def fill_comparisons(all_systems, sent_sys_rank):
             system_list = list(combinations(rand_sid['systems'], args.freeN))
             rank_list = list(combinations(rand_sid['ranks'], args.freeN))
             for system_tuple, rank_tuple in zip(system_list, rank_list):
-                comparison_d[tuple(set(system_tuple))].append((system_tuple, rank_tuple))
+                comparison_d["_".join(tuple(sorted(set(system_tuple))))].append((system_tuple, rank_tuple))
 
 def get_mu_sigma(sys_rate):
     sys_mu_sigma = {}
@@ -167,6 +167,7 @@ def estimate_by_number():
         while num_play < num_iter:
             num_play += 1
             systems_compared = scripts.next_comparison.get(get_mu_sigma(system_rating), args.freeN)
+            systems_compared =  "_".join(tuple(sorted(systems_compared)))
             obs = random.choice(comparison_d[systems_compared])    #(systems, rank)
             systems_name_compared = obs[0]
             partial_rank = obs[1]
