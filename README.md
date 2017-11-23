@@ -42,7 +42,7 @@ This document describes the proposed method described in the following paper:
     * `cd ../src`
     * `cat ../data/ABC.csv |python infer_TS.py ../result/ABC -n 2 -d 0 -s 2`
     * for more details: `python infer_TS.py --help`
-    * You can change other parameters in inter_TS.py, if needed.
+    * You can change other parameters in infer_TS.py, if needed.
     * For clustering (i.e. grouped ranking), we need to execute multiple runs of infer_TS.py (100+ is recommended) for each language pair (e.g. fr-en from fr-en0 to fr-en99).
     * You will get the result named OUT_ID_mu_sigma.json in the result directory
     * For using Expected Win, run `python infer_EW.py -s 2 ../result/ABC`
