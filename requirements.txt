@@ -1,0 +1,4 @@
+numpy
+trueskill
+matplotlib
+sympy
