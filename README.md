@@ -2,11 +2,11 @@
 
 Source code used in 2014 WMT paper, "Efficient Elicitation of Annotations for Human Evaluation of Machine Translation"
 
-- Keisuke Sakaguchi (keisuke[at]cs.jhu.edu)
+- Keisuke Sakaguchi
 - Matt Post
 - Benjamin Van Durme
 
-Last updated: June 12th, 2015
+Last updated: June 11th, 2020
 
 - - -
 
@@ -26,10 +26,9 @@ This document describes the proposed method described in the following paper:
 
 
 ## Prerequisites (and optional) python modules:
- - trueskill (http://trueskill.org/), for running TrueSkill model
- - (optional) matplotlib (http://matplotlib.org/), for visualizing result
- - (optional) sympy (http://sympy.org/), for tuning
-
+ - python 2.7
+ 
+ `pip install -r requirements.txt`
 
 ## Example Procedure:
 + 0) Preprocessing: converting an xml file (from Appraise) to a csv file.
