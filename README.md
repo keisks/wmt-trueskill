@@ -25,7 +25,7 @@ This document describes the proposed method described in the following paper:
     }
 
 
-## Prerequisites (and optional) python modules:
+## Prerequisites python modules:
  - python 2.7
  
  `pip install -r requirements.txt`
